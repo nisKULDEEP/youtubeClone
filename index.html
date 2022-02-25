@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube: Home</title>
+    <!--Fonts import-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .material-icons,
+        .material-icons-outlined {
+            color: rgb(58, 57, 57);
+            cursor: pointer;
+        }
+
+        /* Header css start */
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 10px;
+            vertical-align: middle;
+            border-bottom: 1px solid #cecece;
+        }
+
+        /* Header Div 1 CSS */
+        #youtube_logo {
+            width: 100px;
+            margin-left: 10px;
+        }
+
+        #logo {
+            vertical-align: middle;
+        }
+
+        /* Header Div 2 CSS */
+        #searchBox {
+            width: 50%;
+            display: flex;
+            margin: 0%;
+            padding: 0%;
+            justify-content: center;
+
+        }
+
+        #searchBox>input {
+            width: 80%;
+            height: 40px;
+            vertical-align: top;
+            padding: 2%;
+            overflow-x: auto;
+            border: 1px solid #cecece;
+
+        }
+
+        #searchBox>button {
+            height: 40px;
+            width: 50px;
+            background-color: rgb(243, 243, 243);
+            margin-right: 5px;
+            cursor: pointer;
+            border: 1px solid #cecece;
+        }
+
+        #mic {
+            background-color: #e7e7e7;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            padding: 7px;
+        }
+
+        /* Header Div 3 CSS */
+        #extra {
+            display: flex;
+        }
+
+        #extra>span {
+            margin-right: 10px;
+        }
+
+        /* header css end*/
+
+        /* MainBody CSS Starts */
+        #mainBody {
+            height: calc(100vh - 70px);
+            /* display: flex; */
+            overflow: auto;
+            
+            /* flex-wrap: wrap; */
+        }
+
+        /* Sidebar CSS Starts  */
+        #sidebar {
+            /* min-width: fit-content; */
+            width: 230px;
+            /* max-width: 15%; */
+            position:fixed;
+            /* z-index: 2000; */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebarPart {
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        #option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #option:hover {
+            background-color: #cecece;
+            cursor: pointer;
+        }
+
+        #sidebar .material-icons {
+            margin-left: 5px;
+            margin-right: 20px;
+
+        }
+
+        hr {
+            margin-top: 10px;
+            background-color: #cecece;
+            border: none;
+            height: 1px;
+        }
+        /* filter */
+
+        #filter{
+            top: 70px;
+            margin-left: 230px;
+            position: fixed;
+            /* min-width: calc(100vw-50px); */
+            width: 90%;
+            height: 60px;
+            background: white;
+            border-top: 1px solid #dbdbdb;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 10px 10px;
+           overflow: hidden;
+            align-items: center;
+            ;
+        }
+
+        .filter-options{
+            flex: 0 0 auto;
+            padding: 8px 20px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #dbdbdb;
+            text-transform:  capitalize;
+            margin-right: 10px;
+            /* margin-bottom: 50px; */
+            color: black;
+            font-size: 15px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        /* Video Container Css Start */
+
+        #videoContainer {
+            /* border: 1px solid black; */
+            /* display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           flex-wrap: wrap; */
+           margin-top:50px;
+           display: grid;
+           grid-template-columns: repeat(4,minmax(0, 1fr));
+           /* gap: 10px; */
+
+            background-color: rgb(245, 244, 244);
+            min-height: calc(100vh - 70px);
+            width: calc(100vw - 250px);
+            margin-left: 230px;
+            height:fit-content;
+            /* position: relative; */
+        }
+        .box{
+            /* width: 270px; */
+
+            margin-right: 5px;
+            margin-left: 15px;
+            margin-top: 15px;
+            /* margin-top: 10px; */
+            /* background-color: rgb(230, 230, 230); */
+            /* border: 1px solid #cecece; */
+        }
+        .thumbnailBox{
+            width: 100%;
+            height: 200px;
+            background-color: black;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .thumbnailBox img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        #author{
+            display: flex;
+        }
+
+        #author img{
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+            margin-left: 5px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        .titleDetailsBox > h4{
+            color: rgb(3, 3, 3);
+            font-size: 14px;
+            line-height: 15px;
+            margin-bottom: 6px;
+            margin-top: 5px;
+        }
+
+        .titleDetailsBox a{
+            text-decoration: none;
+            color: rgb(96, 96, 96);
+        }
+        h1{
+            margin-left: 0%;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: rgb(3, 3, 3);
+        }
+
+        iframe{
+            width: calc(100vw - 250px);
+            height: calc(100vh - 35%);
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+
+
+        @media  (max-width: 1400px){
+             #videoContainer {
+            /* border: 1px solid black; */
+            /* display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           flex-wrap: wrap; */
+           margin-top:50px;
+           display: grid;
+           grid-template-columns: repeat(3,minmax(0, 1fr));
+             }
+             .box{
+                 width: 95%;
+             }
+        }
+
+        @media  (max-width: 1000px){
+             #videoContainer {
+            /* border: 1px solid black; */
+            /* display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           flex-wrap: wrap; */
+           margin-top:50px;
+           display: grid;
+           grid-template-columns: repeat(2,minmax(0, 1fr));
+             }
+             .box{
+                 width: 95%;
+             }
+        }
+        @media  (max-width: 800px){
+             #videoContainer {
+            /* border: 1px solid black; */
+            /* display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           flex-wrap: wrap; */
+           margin-top:50px;
+           display: grid;
+           grid-template-columns: repeat(1,minmax(0, 1fr));
+             }
+        }
+     
+    </style>
+</head>
+
+<body>
+    <!--Header-->
+    <div id="header">
+        <!-- Header Div 1 -->
+        <div id="logo">
+            <span class="material-icons">menu </span>
+           <a href="index.html"><img src="https://www.seekpng.com/png/full/77-772362_youtube-logo-youtube-logo-png.png" alt=""
+            id="youtube_logo"></a> 
+        </div>
+        <!-- Header Div 2 -->
+        <div id="searchBox">
+            <input type="text" placeholder="Search" id="searchInput">
+            <button onclick="searchResult()"><span class="material-icons"> search </span></button>
+            <span id="mic" class="material-icons"> mic</span>
+        </div>
+        <!-- Header Div 3 -->
+        <div id="extra">
+            <span class="material-icons-outlined">
+                video_call
+            </span>
+            <span class="material-icons"> file_upload</span>
+            <span class="material-icons"> apps </span>
+            <span class="material-icons-outlined">
+                notifications
+            </span>
+            <span class="material-icons"> account_circle</span>
+        </div>
+    </div>
+    <!-- Header end -->
+
+    <!-- Main Body Starts -->
+
+    <div id="mainBody">
+
+        <!-- Sidebar body starts -->
+        <div id="sidebar">
+            <div id="sidebarPart">
+                <div id="option">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">explore</span>
+                    <span>Explore</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">slideshow</span>
+                    <span>Shorts</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">subscriptions</span>
+                    <span>Subscriptions</span>
+                </div>
+
+                <hr>
+            </div>
+
+            <div id="sidebarPart">
+                <div id="option">
+                    <span class="material-icons">video_library</span>
+                    <span>Library</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">history</span>
+                    <span>History</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">smart_display</span>
+                    <span>Your videos</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">watch_later</span>
+                    <span>Watch later</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">watch_later</span>
+                    <span>Subscriptions</span>
+                </div>
+                <div id="option">
+                    <span class="material-icons">thumb_up</span>
+                    <span>Liked videos</span>
+                </div>
+                <hr>
+            </div>
+
+
+        </div>
+        <!-- Sidebar body ends -->
+
+        <!-- filter start -->
+        <div id="filter">
+            <button class="filter-options">All</button>
+            <button class="filter-options">CSS</button>
+            <button class="filter-options">web development</button>
+            <button class="filter-options">masai</button>
+            <button class="filter-options">trailer</button>
+            <button class="filter-options">anime</button>
+            <button class="filter-options">devops</button>
+            <button class="filter-options">avenger</button>
+            <button class="filter-options">batman</button>
+            <button class="filter-options">java</button>
+            <button class="filter-options">javascript</button>
+            <button class="filter-options">Batma</button>
+        </div>
+
+        <!-- Video body start -->
+        
+        
+        
+            <div id="videoContainer"> 
+                
+                
+
+            </div>
+        <!-- Video body ends -->
+    </div>
+
+
+    <!-- Main Body Ends -->
+
+</body>
+
+</html>
+
+<script>
+    var videoContainer = document.getElementById("videoContainer");
+
+    async function defaultDisplay() {
+
+    }
+
+    async function searchResult() {
+        try {
+            var keyword = document.getElementById("searchInput").value;
+            var url = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=28&q=${keyword}&key=AIzaSyCVKlTFmVdPBOdcQuVgP3WdWkTg12G5uVk`);
+            var data = await url.json();
+            display(data.items);
+
+        } catch (error) {
+            console.log("ERROR")
+        }
+    }
+
+    async function getChannelIcon(channelId){
+        // console.log(channelId)
+        
+           try {
+            var urlForChannelIcon = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=AIzaSyCVKlTFmVdPBOdcQuVgP3WdWkTg12G5uVk`);
+
+            var data = await urlForChannelIcon.json();
+            // console.log(data.items[0].snippet.thumbnails.medium.url)
+            return data.items[0].snippet.thumbnails.medium.url;
+           } catch (error) {
+              console.log("ERROR") 
+           }
+            
+
+     
+
+    }
+
+     function display(arr) {
+        console.log(arr);
+        videoContainer.innerHTML="";
+
+        arr.forEach(async element => {
+            let box = document.createElement("div");
+            let videoID = element.id;
+             
+            let thumbnailBox = document.createElement("div")
+            let videoThumbnail = document.createElement('img');
+            videoThumbnail.src = element.snippet.thumbnails.medium.url;
+            // videoThumbnail.onclick = ;
+            thumbnailBox.append(videoThumbnail);
+            thumbnailBox.addEventListener("click", () => {
+                console.log(videoID)
+               var url =  `https://www.youtube.com/embed/${videoID}`
+                playVideo(url);
+            })
+            thumbnailBox.setAttribute("class","thumbnailBox")
+            // videoThumbnail.setAttribute("class","thumbnail")
+           
+            var author = document.createElement("div");
+
+            let channelLogo = document.createElement("div");
+            let videoChannelLogo = document.createElement("img");
+            var videoChannelLogoURL = await getChannelIcon(element.snippet.channelId);
+            videoChannelLogo.src = videoChannelLogoURL;
+            // videoChannelLogo.style.height = "20px";
+            channelLogo.append(videoChannelLogo);
+
+            let titleDetailsBox = document.createElement("div");
+            let title = document.createElement("h4");
+            title.textContent = element.snippet.title;
+
+            let channelName = document.createElement("a");
+            channelName.href = `https://www.youtube.com/channel/${element.snippet.channelId}`
+            channelName.textContent = element.snippet.channelTitle;
+
+            let publishTime = document.createElement("div");
+            publishTime.textContent = element.snippet.publishTime;
+
+            titleDetailsBox.append(title,channelName,publishTime);
+            titleDetailsBox.setAttribute("class","titleDetailsBox")
+            author.append(channelLogo,titleDetailsBox);
+            author.setAttribute("id","author")
+
+
+            // let iframe = document.createElement("iframe");
+            // iframe.src = `https://www.youtube.com/embed/${videoID}`;
+            box.append(thumbnailBox,author);
+            box.setAttribute("class","box");
+            videoContainer.appendChild(box);
+            
+        });
+    }
+
+    var playVideo = (url) =>{
+        console.log(url);
+        videoContainer.innerHTML=""
+        let iframe = document.createElement("iframe");
+            iframe.src = url;
+        videoContainer.appendChild(iframe);
+    }
+
+
+    // Home Screen
+
+    
+
+    async function homeScreen() {
+        try {
+            var keyword = document.getElementById("searchInput").value;
+            var url = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=AIzaSyCVKlTFmVdPBOdcQuVgP3WdWkTg12G5uVk&maxResults=20`);
+            var data = await url.json();
+            display(data.items);
+
+        } catch (error) {
+            console.log("ERROR")
+        }
+
+    }
+
+    homeScreen();
+
+</script>
